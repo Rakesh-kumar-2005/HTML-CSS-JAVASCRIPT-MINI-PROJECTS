@@ -5,6 +5,7 @@ body{
     justify-content: center;
     align-items: center;
 }
+
 button{
     font-size: 30px;
     padding: 1em 4em;
@@ -12,13 +13,14 @@ button{
     border-radius: 120px;
     background-color: #161a20;
     color: rgb(233, 237, 241);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all .3s ease-in-out;
 }
+
 button::after{
     content: '';
     position: absolute;
@@ -28,6 +30,7 @@ button::after{
     background-image: linear-gradient(to bottom right, #7aefff, #ed0c10);
     z-index: -1;
 }
+
 button:hover{
     z-index: 0;
     box-shadow: 0px 0 50px #7aefff,
