@@ -16,6 +16,10 @@ html,body{
     width: 100%;
 }
 
+body {
+    background-color: #161616;
+}
+
 .container{
     height: 100%;
     width: 100%;
