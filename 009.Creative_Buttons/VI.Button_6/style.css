@@ -37,19 +37,19 @@ a::before {
   border-radius: 40px;
   z-index: -1;
   transition: all 0.9s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
 }
 
 a:hover:before {
   transform: scaleX(1.4) scaleY(1.6);
   opacity: 0;
-}
-
-a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-a:active {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
