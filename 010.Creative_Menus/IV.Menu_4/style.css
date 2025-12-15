@@ -1,14 +1,242 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-.container{
+.container {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #000;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated background particles */
+.container::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: particleMove 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes particleMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50px); }
+}
+
+ul {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+li {
+    list-style: none;
+    position: relative;
+}
+
+/* Glowing effect on hover */
+li:hover {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+}
+
+ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 25px;
+    padding: 15px 40px;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    margin: 0 10px;
+    position: relative;
+    text-transform: uppercase;
+    display: block;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* Bottom-left corner */
+.list-items::before {
+    content: "";
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    width: 0;
+    height: 0;
+    border: 3px solid #fff;
+    border-width: 0 0 3px 3px;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.list-items:hover::before {
+    opacity: 1;
+    bottom: -8px;
+    left: -8px;
+    width: 20px;
+    height: 20px;
+    animation: cornerGlow 1.5s ease-in-out infinite;
+}
+
+/* Top-right corner */
+.list-items::after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 0;
+    height: 0;
+    border: 3px solid #fff;
+    border-width: 3px 3px 0 0;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.list-items:hover::after {
+    opacity: 1;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    animation: cornerGlow 1.5s ease-in-out infinite 0.3s;
+}
+
+@keyframes cornerGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.9),
+                    0 0 40px rgba(255, 255, 255, 0.6);
+    }
+}
+
+/* Add top-left corner */
+li::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 0;
+    height: 0;
+    border: 3px solid #fff;
+    border-width: 3px 0 0 3px;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    z-index: 1;
+}
+
+li:hover::before {
+    opacity: 1;
+    top: -8px;
+    left: -8px;
+    width: 20px;
+    height: 20px;
+    animation: cornerGlow 1.5s ease-in-out infinite 0.15s;
+}
+
+/* Add bottom-right corner */
+li::after {
+    content: "";
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 0;
+    height: 0;
+    border: 3px solid #fff;
+    border-width: 0 3px 3px 0;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    z-index: 1;
+}
+
+li:hover::after {
+    opacity: 1;
+    bottom: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    animation: cornerGlow 1.5s ease-in-out infinite 0.45s;
+}
+
+/* Scan line effect */
+.list-items:hover {
+    color: #fff;
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.5),
+        0 0 30px rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+    letter-spacing: 4px;
+}
+
+/* Background glow box */
+.list-items:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+}
+
+/* Underline animation */
+.list-items span {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    transition: width 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 0 10px #fff;
+}
+
+.list-items:hover span {
+    width: 80%;
+    animation: underlinePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes underlinePulse {
+    0%, 100% {
+        box-shadow: 0 0 10px #fff;
+    }
+    50% {
+        box-shadow: 0 0 20px #fff, 0 0 30px #fff;
+    }
+}
+
+/* Ripple effect on click */
+.list-items:active {
+    transform: scale(0.95);
+    transition: transform 0.1s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    ul li a {
+        font-size: 20px;
+        padding: 12px 30px;
+    }
 }
