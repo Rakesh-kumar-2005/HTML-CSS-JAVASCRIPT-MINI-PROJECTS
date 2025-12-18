@@ -1,0 +1,347 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Animated background particles */
+body::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: particleFloat 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes particleFloat {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(40px, 40px); }
+}
+
+.container {
+  height: 30rem;
+  width: 30rem;
+  overflow: hidden;
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.container:hover {
+  transform: scale(1.05) translateY(-10px);
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.9),
+    0 0 60px rgba(100, 200, 255, 0.4);
+}
+
+/* Glowing border effect */
+.container::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    #00ffff,
+    #ff00ff,
+    #00ffff,
+    #ff00ff
+  );
+  background-size: 400% 400%;
+  border-radius: 22px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s;
+  animation: gradientRotate 3s ease infinite;
+}
+
+@keyframes gradientRotate {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.container:hover::before {
+  opacity: 1;
+}
+
+/* Corner brackets */
+.container::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, #00ffff, transparent, transparent, #ff00ff) 1;
+  opacity: 0;
+  transition: all 0.6s;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.container:hover::after {
+  opacity: 1;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  filter: brightness(0.8) contrast(1.1);
+}
+
+.container:hover img {
+  transform: translateX(100%) scale(1.2) rotate(5deg);
+  filter: brightness(0.6) blur(3px);
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(30, 30, 60, 0.95) 50%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  backdrop-filter: blur(10px);
+  transform: translateX(-100%);
+  z-index: 5;
+}
+
+.container:hover .content {
+  transform: translateX(0);
+}
+
+.content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  background: linear-gradient(135deg, #00ffff, #ff00ff, #00ffff);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textGradient 3s ease infinite;
+  text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes textGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.container:hover .content h1 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content h4 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(0, 255, 255, 0.3);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  padding: 10px 0;
+}
+
+/* Animated underline for h4 */
+.content h4::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+  transition: width 0.6s 0.8s;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+.container:hover .content h4 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.container:hover .content h4::after {
+  width: 100%;
+}
+
+/* Add decorative elements */
+.content::before,
+.content::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #00ffff;
+  opacity: 0;
+  transition: all 0.6s 0.6s;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.content::before {
+  top: 20px;
+  left: 20px;
+  border-width: 3px 0 0 3px;
+}
+
+.content::after {
+  bottom: 20px;
+  right: 20px;
+  border-width: 0 3px 3px 0;
+}
+
+.container:hover .content::before,
+.container:hover .content::after {
+  opacity: 1;
+}
+
+.container:hover .content::before {
+  top: 10px;
+  left: 10px;
+}
+
+.container:hover .content::after {
+  bottom: 10px;
+  right: 10px;
+}
+
+/* Scan line effect */
+.content .scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(0, 255, 255, 0.8), 
+    transparent
+  );
+  opacity: 0;
+  box-shadow: 0 0 20px #00ffff;
+}
+
+.container:hover .content .scanline {
+  animation: scan 2s linear infinite;
+  opacity: 1;
+}
+
+@keyframes scan {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(480px); }
+}
+
+/* Button (optional - add to HTML if needed) */
+.content button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  background: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.container:hover .content button {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+  transition: left 0.5s;
+}
+
+.content button:hover::before {
+  left: 100%;
+}
+
+.content button:hover {
+  background: #00ffff;
+  color: #000;
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.8);
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    height: 20rem;
+    width: 20rem;
+  }
+  
+  .content h1 {
+    font-size: 1.5rem;
+  }
+  
+  .content h4 {
+    font-size: 1rem;
+  }
+}
