@@ -16,7 +16,6 @@ body {
   position: relative;
 }
 
-/* Animated background particles */
 body::before {
   content: "";
   position: absolute;
@@ -86,29 +85,8 @@ body::before {
   opacity: 1;
 }
 
-/* Corner brackets */
-.container::after {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  border: 2px solid transparent;
-  border-image: linear-gradient(135deg, #00ffff, transparent, transparent, #ff00ff) 1;
-  opacity: 0;
-  transition: all 0.6s;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.container:hover::after {
-  opacity: 1;
-  top: 5px;
-  left: 5px;
-  right: 5px;
-  bottom: 5px;
-}
+/* REMOVED: Corner brackets - this was creating the squares */
+/* .container::after removed */
 
 img {
   width: 100%;
@@ -194,7 +172,6 @@ img {
   padding: 10px 0;
 }
 
-/* Animated underline for h4 */
 .content h4::after {
   content: "";
   position: absolute;
@@ -217,47 +194,9 @@ img {
   width: 100%;
 }
 
-/* Add decorative elements */
-.content::before,
-.content::after {
-  content: "";
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border: 3px solid #00ffff;
-  opacity: 0;
-  transition: all 0.6s 0.6s;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-}
+/* REMOVED: Decorative corner elements */
+/* .content::before and .content::after removed */
 
-.content::before {
-  top: 20px;
-  left: 20px;
-  border-width: 3px 0 0 3px;
-}
-
-.content::after {
-  bottom: 20px;
-  right: 20px;
-  border-width: 0 3px 3px 0;
-}
-
-.container:hover .content::before,
-.container:hover .content::after {
-  opacity: 1;
-}
-
-.container:hover .content::before {
-  top: 10px;
-  left: 10px;
-}
-
-.container:hover .content::after {
-  bottom: 10px;
-  right: 10px;
-}
-
-/* Scan line effect */
 .content .scanline {
   position: absolute;
   top: 0;
@@ -283,7 +222,6 @@ img {
   100% { transform: translateY(480px); }
 }
 
-/* Button (optional - add to HTML if needed) */
 .content button {
   margin-top: 20px;
   padding: 12px 30px;
@@ -330,7 +268,6 @@ img {
   transform: scale(1.05);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .container {
     height: 20rem;
