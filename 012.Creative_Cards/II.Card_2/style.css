@@ -1,10 +1,106 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-    height: 100vh;
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #42047e, #07f49e);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: relative;
+  width: 370px;
+  height: 450px;
+  background-color: white;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  overflow: visible;
+}
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  transition: all 0.5s ease;
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.card:hover::before {
+  transform: rotate(20deg);
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.4);
+}
+
+.card:hover::after {
+  transform: rotate(10deg);
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.4);
+}
+
+.imgBox {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  right: 10px;
+  background: #222;
+  transition: all 0.5s ease;
+  z-index: 2;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.imgBox img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  transition: all 0.5s ease;
+}
+
+.card:hover .imgBox {
+  bottom: 90px;
+}
+
+.card:hover .imgBox img {
+  opacity: 1;
+}
+
+.details {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  height: 70px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 3;
+}
+
+.details h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.details p {
+  font-size: 14px;
+  color: #666;
+  font-weight: 400;
 }
