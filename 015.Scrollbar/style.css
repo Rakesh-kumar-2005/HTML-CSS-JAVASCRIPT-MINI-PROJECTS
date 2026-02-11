@@ -1,29 +1,213 @@
-body{
+body {
     margin: 0;
     padding: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(45deg ,rgb(0, 65, 88),rgb(37, 5, 40));
+    background: linear-gradient(135deg, rgb(0, 65, 88), rgb(37, 5, 40));
     color: white;
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
 }
 
 .scroll-container {
-    background-color: black;
-    width: 25rem;
-    padding: 30px;
-    border-radius: 18px;
+    background: linear-gradient(145deg, rgba(20, 20, 30, 0.9), rgba(10, 10, 20, 0.95));
+    width: 450px;
+    padding: 35px;
+    border-radius: 24px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(99, 102, 241, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeInScale 0.8s ease-out;
+    position: relative;
 }
 
-.scroll-div{
-    width: 400px;
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.container-title {
+    margin: 0 0 25px 0;
+    font-size: 24px;
+    font-weight: 600;
+    background: linear-gradient(90deg, #818cf8, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    letter-spacing: 0.5px;
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-div {
+    width: 100%;
     height: 500px;
     overflow: hidden;
     overflow-y: scroll;
+    padding-right: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.scroll-object{
-    line-height: 20px;
+/* Custom Scrollbar Styling */
+.scroll-div::-webkit-scrollbar {
+    width: 12px;
+}
+
+.scroll-div::-webkit-scrollbar-track {
+    background: rgba(30, 30, 45, 0.5);
+    border-radius: 10px;
+    margin: 4px 0;
+}
+
+.scroll-div::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #818cf8, #c084fc);
+    border-radius: 10px;
+    border: 2px solid rgba(30, 30, 45, 0.5);
+    transition: all 0.3s ease;
+}
+
+.scroll-div::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #a5b4fc, #e9d5ff);
+    border-color: rgba(129, 140, 248, 0.3);
+    box-shadow: 0 0 15px rgba(129, 140, 248, 0.5);
+}
+
+.scroll-div::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(180deg, #6366f1, #a855f7);
+}
+
+/* Firefox Scrollbar */
+.scroll-div {
+    scrollbar-width: thin;
+    scrollbar-color: #818cf8 rgba(30, 30, 45, 0.5);
+}
+
+.scroll-object {
+    line-height: 1.8;
+    padding: 25px;
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.scroll-object p {
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+    text-align: justify;
+    transition: color 0.3s ease;
+}
+
+.scroll-object p:hover {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    opacity: 0.7;
+    animation: fadeInDelay 1.2s ease-out;
+}
+
+@keyframes fadeInDelay {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 0.7;
+        transform: translateY(0);
+    }
+}
+
+.indicator-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+.indicator-arrow {
+    font-size: 20px;
+    color: #818cf8;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+/* Glow effect on container hover */
+.scroll-container:hover {
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 50px rgba(129, 140, 248, 0.3),
+        0 0 100px rgba(168, 85, 247, 0.2);
+    border-color: rgba(129, 140, 248, 0.3);
+}
+
+/* Smooth transitions for all elements */
+* {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .scroll-container {
+        width: 90%;
+        padding: 25px;
+    }
+    
+    .scroll-div {
+        height: 400px;
+    }
+    
+    .container-title {
+        font-size: 20px;
+    }
+    
+    .scroll-object {
+        padding: 20px;
+    }
 }
