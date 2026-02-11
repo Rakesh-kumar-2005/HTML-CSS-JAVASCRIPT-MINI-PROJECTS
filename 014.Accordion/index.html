@@ -3,69 +3,88 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Accordion</title>
+    <title>Modern Accordion</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <ul id="accordion">
-      <li>
-        <label for="first">What is HTML?<span>&#x3e;</span></label>
-        <input type="radio" name="accordion" id="first" checked />
-        <div class="content">
-          <p>
-            The HyperText Markup Language or HTML is the standard markup
-            language for documents designed to be displayed in a web browser. It
-            can be assisted by technologies such as Cascading Style Sheets and
-            scripting languages such as JavaScript.
-          </p>
-        </div>
-      </li>
-      <li>
-        <label for="second">What is CSS?<span>&#x3e;</span></label>
-        <input type="radio" name="accordion" id="second" />
-        <div class="content">
-          <p>
-            Cascading Style Sheets is a style sheet language used for describing
-            the presentation of a document written in a markup language such as
-            HTML. CSS is a cornerstone technology of the World Wide Web,
-            alongside HTML and JavaScript.
-          </p>
-        </div>
-      </li>
-      <li>
-        <label for="third">What is JAVASCRIPT?<span>&#x3e;</span></label>
-        <input type="radio" name="accordion" id="third" />
-        <div class="content">
-          <p>
-            JavaScript, often abbreviated JS, is a programming language that is
-            one of the core technologies of the World Wide Web, alongside HTML
-            and CSS. Over 97% of websites use JavaScript on the client side for
-            web page behavior, often incorporating third-party libraries.
-          </p>
-        </div>
-      </li>
-      <li>
-        <label for="fourth">What is REACT?<span>&#x3e;</span></label>
-        <input type="radio" name="accordion" id="fourth" />
-        <div class="content">
-          <p>
-            React is a free and open-source front-end JavaScript library for
-            building user interfaces based on UI components. It is maintained by
-            Meta and a community of individual developers and companies.
-          </p>
-        </div>
-      </li>
-      <li>
-        <label for="fifth">What is NODE.JS?<span>&#x3e;</span></label>
-        <input type="radio" name="accordion" id="fifth" />
-        <div class="content">
-          <p>
-            Node.js is an open-source, cross-platform, back-end JavaScript
-            runtime environment that runs on the V8 engine and executes
-            JavaScript code outside a web browser
-          </p>
-        </div>
-      </li>
-    </ul>
+    <div class="container">
+      <h1 class="title">Frequently Asked Questions</h1>
+      <ul id="accordion">
+        <li>
+          <label for="first">
+            <span class="question">What is HTML?</span>
+            <span class="icon">⯈</span>
+          </label>
+          <input type="radio" name="accordion" id="first" checked />
+          <div class="content">
+            <p>
+              The HyperText Markup Language or HTML is the standard markup
+              language for documents designed to be displayed in a web browser.
+              It can be assisted by technologies such as Cascading Style Sheets
+              and scripting languages such as JavaScript.
+            </p>
+          </div>
+        </li>
+        <li>
+          <label for="second">
+            <span class="question">What is CSS?</span>
+            <span class="icon">⯈</span>
+          </label>
+          <input type="radio" name="accordion" id="second" />
+          <div class="content">
+            <p>
+              Cascading Style Sheets is a style sheet language used for
+              describing the presentation of a document written in a markup
+              language such as HTML. CSS is a cornerstone technology of the
+              World Wide Web, alongside HTML and JavaScript.
+            </p>
+          </div>
+        </li>
+        <li>
+          <label for="third">
+            <span class="question">What is JAVASCRIPT?</span>
+            <span class="icon">⯈</span>
+          </label>
+          <input type="radio" name="accordion" id="third" />
+          <div class="content">
+            <p>
+              JavaScript, often abbreviated JS, is a programming language that
+              is one of the core technologies of the World Wide Web, alongside
+              HTML and CSS. Over 97% of websites use JavaScript on the client
+              side for web page behavior, often incorporating third-party
+              libraries.
+            </p>
+          </div>
+        </li>
+        <li>
+          <label for="fourth">
+            <span class="question">What is REACT?</span>
+            <span class="icon">⯈</span>
+          </label>
+          <input type="radio" name="accordion" id="fourth" />
+          <div class="content">
+            <p>
+              React is a free and open-source front-end JavaScript library for
+              building user interfaces based on UI components. It is maintained
+              by Meta and a community of individual developers and companies.
+            </p>
+          </div>
+        </li>
+        <li>
+          <label for="fifth">
+            <span class="question">What is NODE.JS?</span>
+            <span class="icon">⯈</span>
+          </label>
+          <input type="radio" name="accordion" id="fifth" />
+          <div class="content">
+            <p>
+              Node.js is an open-source, cross-platform, back-end JavaScript
+              runtime environment that runs on the V8 engine and executes
+              JavaScript code outside a web browser.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
   </body>
 </html>

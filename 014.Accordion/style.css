@@ -1,60 +1,189 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #000;
-    font-family: sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
 }
 
-#accordion{
-    margin: 100px auto;
-    width: 600px;
+.container {
+    width: 100%;
+    max-width: 700px;
 }
 
-#accordion li{
+.title {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#accordion {
+    margin: 0 auto;
+    width: 100%;
+}
+
+#accordion li {
     list-style: none;
-    width: 600px;
-    margin-bottom: 10px;
-    background-color: white;
-    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #1e1e2e 0%, #2a2a3e 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeInUp 0.6s ease-out backwards;
 }
 
-#accordion li label{
-    padding: 10px;
+#accordion li:nth-child(1) { animation-delay: 0.1s; }
+#accordion li:nth-child(2) { animation-delay: 0.2s; }
+#accordion li:nth-child(3) { animation-delay: 0.3s; }
+#accordion li:nth-child(4) { animation-delay: 0.4s; }
+#accordion li:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#accordion li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+#accordion li label {
+    padding: 20px 25px;
     display: flex;
     justify-content: space-between;
-    align-items:center;
+    align-items: center;
     font-size: 18px;
     font-weight: 500;
-    color: burlywood;
+    background: transparent;
     cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
 }
 
-#accordion li label span {
-    transform: rotate(90deg);
-    font-size: 22px;
-    color: burlywood;
+#accordion li label:hover {
+    background: rgba(99, 102, 241, 0.1);
 }
 
-#accordion label + input[type="radio"]{
+#accordion li label .question {
+    color: #e0e0e0;
+    transition: color 0.3s ease;
+}
+
+#accordion li label:hover .question {
+    color: #818cf8;
+}
+
+#accordion li label .icon {
+    font-size: 24px;
+    color: #818cf8;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: bold;
+}
+
+#accordion label + input[type="radio"] {
     display: none;
 }
 
-#accordion .content{
-    padding: 0 10px;
-    line-height: 26px;
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.5s ease-in-out;
+#accordion label + input[type="radio"]:checked ~ label,
+#accordion input[type="radio"]:checked + label {
+    background: rgba(99, 102, 241, 0.15);
+    border-bottom: 2px solid rgba(129, 140, 248, 0.3);
 }
 
-#accordion label + input[type="radio"]:checked + .content{
-    max-height: 400px;
+#accordion input[type="radio"]:checked + label .question {
+    color: #818cf8;
+    font-weight: 600;
+}
+
+#accordion input[type="radio"]:checked + label .icon {
+    transform: rotate(270deg);
+    color: #a5b4fc;
+}
+
+#accordion .content {
+    padding: 0 25px;
+    line-height: 28px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#accordion .content p {
+    color: #b8b8d1;
+    font-size: 16px;
+    margin: 0;
+    padding: 20px 0;
+    line-height: 1.8;
+}
+
+#accordion label + input[type="radio"]:checked + .content {
+    max-height: 500px;
+    opacity: 1;
+    padding: 0 25px;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#accordion input[type="radio"]:checked + label + .content {
+    animation: slideDown 0.4s ease-out;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+    
+    #accordion li label {
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+    
+    #accordion .content p {
+        font-size: 14px;
+    }
 }
