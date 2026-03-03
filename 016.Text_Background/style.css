@@ -1,3 +1,23 @@
 *{
-    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+}
+
+.heading{
+    font-size: 10rem;
+    font-family: sans-serif;
+    color: transparent;
+    background: url(https://media.istockphoto.com/id/609627002/photo/water.jpg?s=1024x1024&w=is&k=20&c=iZ5Gyi-PvIRjtmKtgJNEmL5mspfp150xS8YzG05HrQ0=);
+    background-clip: text;
+    background-size: cover;
+    cursor: pointer;
 }
