@@ -1,44 +1,226 @@
-* {
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  height: 100vh;
-  background: black;
-  font-family: sans-serif;
-  color: white;
-}
+    :root {
+      --accent-1: #00ffe0;
+      --accent-2: #ff2d6b;
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --border: rgba(255,255,255,0.07);
+      --text: #e8e8f0;
+      --muted: #6b6b80;
+    }
 
-.content {
-  padding: 4rem;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-section {
-  border: 2px solid white;
-  border-radius: 10px;
-  padding: 10px 10px;
-  margin: 10px 10px;
-}
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-h1 {
-  margin: 10px 0;
-}
+    /* ── Noise texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
 
-p {
-  text-align: justify;
-}
+    /* ── Scroll progress bar ── */
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.05);
+      z-index: 1000;
+    }
 
-.scroll-indicator {
-  width: calc(100% - 6em);
-  height: 7px;
-  border-radius: 2px;
-  transition: width 0.3s ease-in-out;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, var(--accent-1), var(--accent-2));
+      transition: width 0.1s linear;
+      box-shadow: 0 0 12px var(--accent-1), 0 0 30px rgba(0,255,224,0.3);
+      border-radius: 0 2px 2px 0;
+    }
 
-.progress{
-    
-}
+    /* ── Percentage counter ── */
+    .scroll-counter {
+      position: fixed;
+      top: 14px;
+      right: 24px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      z-index: 1000;
+      transition: color 0.3s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 999;
+    }
+
+    .site-header .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.15em;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Main content ── */
+    .content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 6rem 2rem 6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Section cards ── */
+    section {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2.5rem;
+      margin-bottom: 1.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,255,224,0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    section:hover {
+      border-color: rgba(0,255,224,0.15);
+      transform: translateY(-2px);
+    }
+
+    section:hover::before {
+      opacity: 1;
+    }
+
+    /* ── Section number badge ── */
+    section::after {
+      content: attr(data-num);
+      position: absolute;
+      top: 1.8rem;
+      right: 2rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.05em;
+      color: #fff;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      text-align: justify;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* ── Divider accent line ── */
+    .section-divider {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      border-radius: 2px;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── Scroll-in animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    section {
+      animation: fadeUp 0.5s ease both;
+    }
+
+    section:nth-child(1)  { animation-delay: 0.05s; }
+    section:nth-child(2)  { animation-delay: 0.10s; }
+    section:nth-child(3)  { animation-delay: 0.15s; }
+    section:nth-child(4)  { animation-delay: 0.20s; }
+    section:nth-child(5)  { animation-delay: 0.25s; }
+
+    /* ── Ambient glow ── */
+    .glow-orb {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.12;
+    }
+    .glow-orb-1 {
+      background: var(--accent-1);
+      top: -200px;
+      left: -200px;
+    }
+    .glow-orb-2 {
+      background: var(--accent-2);
+      bottom: -200px;
+      right: -200px;
+    }
