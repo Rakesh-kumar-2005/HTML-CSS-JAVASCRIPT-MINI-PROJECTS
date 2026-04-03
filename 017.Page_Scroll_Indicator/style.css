@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background: black;
+  font-family: sans-serif;
+  color: white;
+}
+
+.content {
+  padding: 4rem;
+}
+
+section {
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 10px 10px;
+  margin: 10px 10px;
+}
+
+h1 {
+  margin: 10px 0;
+}
+
+p {
+  text-align: justify;
+}
+
+.scroll-indicator {
+  width: calc(100% - 6em);
+  height: 7px;
+  border-radius: 2px;
+  transition: width 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.progress{
+    
+}
