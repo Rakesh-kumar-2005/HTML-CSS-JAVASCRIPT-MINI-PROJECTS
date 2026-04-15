@@ -1,99 +1,68 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --main-color: #dc143c;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: rgb(7, 7, 20);
-}
-
-/* gray-heart */
-.gray-heart {
-  background: #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 100px;
+.particle-heart {
   position: relative;
-  top: 0;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
+.heart-shape {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #555;
   transform: rotate(-45deg);
+  transition: all 0.4s ease;
 }
 
-.gray-heart:before,
-.gray-heart:after {
+.heart-shape::before,
+.heart-shape::after {
   content: "";
-  background: #ccc;
+  position: absolute;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  height: 100px;
-  width: 100px;
-  position: absolute;
+  background: inherit;
 }
 
-.gray-heart:before {
+.heart-shape::before {
   top: -50px;
-  left: 0;
 }
 
-.gray-heart:after {
+.heart-shape::after {
   left: 50px;
-  top: 0;
 }
 
-/* red-heart */
-.red-heart {
-  background: var(--main-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  width: 100px;
-  transform: rotate(-45deg);
+.particle-heart.active .heart-shape {
+  background: #ff3d6e;
+  transform: rotate(-45deg) scale(1.15);
+  filter: drop-shadow(0 0 20px #ff3d6e);
+}
+
+.particle-heart span {
   position: absolute;
-  visibility: hidden;
-}
-
-.red-heart:before,
-.red-heart:after {
-  content: "";
-  background: var(--main-color);
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  position: absolute;
+  background: #ff6b8a;
+  opacity: 0;
 }
 
-.red-heart:before {
-  top: -50px;
-  left: 0;
+.particle-heart.active span {
+  animation: fly 1s ease forwards;
 }
 
-.red-heart:after {
-  left: 50px;
-  top: 0;
-}
+.particle-heart span:nth-child(2) { left: 20px; top: 20px; }
+.particle-heart span:nth-child(3) { left: 80px; top: 10px; }
+.particle-heart span:nth-child(4) { left: 50px; top: 50px; }
+.particle-heart span:nth-child(5) { left: 10px; top: 70px; }
+.particle-heart span:nth-child(6) { left: 90px; top: 70px; }
 
-.red-heart.animation {
-  animation: pop 0.9s linear;
-  visibility: visible;
-}
-
-.red-heart.fill-color {
-  background: var(--main-color);
-}
-
-@keyframes pop {
-  100% {
-    transform: scale(1.7) rotate(-45deg);
-    opacity: 0;
+@keyframes fly {
+  0% {
+    opacity: 1;
+    transform: translate(0,0) scale(1);
   }
-}
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50px + 100px * random), -100px) scale(2);
+  }
