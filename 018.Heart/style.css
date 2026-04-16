@@ -1,21 +1,23 @@
-.particle-heart {
+.liquid-heart-wrapper {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   cursor: pointer;
 }
 
-.heart-shape {
+.liquid-heart {
   position: absolute;
   width: 100px;
   height: 100px;
-  background: #555;
+  background: #666;
   transform: rotate(-45deg);
-  transition: all 0.4s ease;
+  left: 10px;
+  top: 10px;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-.heart-shape::before,
-.heart-shape::after {
+.liquid-heart::before,
+.liquid-heart::after {
   content: "";
   position: absolute;
   width: 100px;
@@ -24,45 +26,39 @@
   background: inherit;
 }
 
-.heart-shape::before {
+.liquid-heart::before {
   top: -50px;
 }
 
-.heart-shape::after {
+.liquid-heart::after {
   left: 50px;
 }
 
-.particle-heart.active .heart-shape {
-  background: #ff3d6e;
-  transform: rotate(-45deg) scale(1.15);
-  filter: drop-shadow(0 0 20px #ff3d6e);
+.liquid-heart-wrapper.active .liquid-heart {
+  background: linear-gradient(135deg, #ff0844, #ff5e62);
+  animation: pulseMorph 1.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 25px rgba(255, 0, 80, 0.8));
 }
 
-.particle-heart span {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ff6b8a;
-  opacity: 0;
-}
-
-.particle-heart.active span {
-  animation: fly 1s ease forwards;
-}
-
-.particle-heart span:nth-child(2) { left: 20px; top: 20px; }
-.particle-heart span:nth-child(3) { left: 80px; top: 10px; }
-.particle-heart span:nth-child(4) { left: 50px; top: 50px; }
-.particle-heart span:nth-child(5) { left: 10px; top: 70px; }
-.particle-heart span:nth-child(6) { left: 90px; top: 70px; }
-
-@keyframes fly {
+@keyframes pulseMorph {
   0% {
-    opacity: 1;
-    transform: translate(0,0) scale(1);
+    transform: rotate(-45deg) scale(1);
+    border-radius: 0;
+  }
+  25% {
+    transform: rotate(-45deg) scale(1.15);
+    border-radius: 10px;
+  }
+  50% {
+    transform: rotate(-45deg) scale(0.95);
+    border-radius: 20px;
+  }
+  75% {
+    transform: rotate(-45deg) scale(1.1);
+    border-radius: 8px;
   }
   100% {
-    opacity: 0;
-    transform: translate(calc(-50px + 100px * random), -100px) scale(2);
+    transform: rotate(-45deg) scale(1);
+    border-radius: 0;
   }
+}

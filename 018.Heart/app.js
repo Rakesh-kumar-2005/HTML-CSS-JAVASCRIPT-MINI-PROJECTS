@@ -1,9 +1,5 @@
-const particleHeart = document.querySelector('.particle-heart');
+const liquidHeart = document.querySelector('.liquid-heart-wrapper');
 
-particleHeart.addEventListener('click', () => {
-  particleHeart.classList.toggle('active');
-
-  setTimeout(() => {
-    particleHeart.classList.remove('active');
-  }, 1000);
+liquidHeart.addEventListener('click', () => {
+  liquidHeart.classList.toggle('active');
 });
